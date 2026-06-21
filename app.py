@@ -2,7 +2,7 @@ from src.retrieval import retrieve_context
 
 from src.generator import generate_test_cases
 
-from src.excel_export import export_to_excel
+from src.excel_export import export_to_csv
 
 
 def main():
@@ -49,7 +49,7 @@ def main():
 
     )
 
-    export_to_excel(
+    export_to_csv(
 
         output
 

@@ -1,17 +1,13 @@
 import pandas as pd
 
 
-def export_to_excel(content):
+def export_to_csv(test_cases):
 
-    df = pd.DataFrame({
+    df = pd.DataFrame(test_cases)
 
-        "Generated_Test_Cases": [content]
+    output_path = "output/test_cases.csv"
 
-    })
-
-    output_path = "output/test_cases.xlsx"
-
-    df.to_excel(
+    df.to_csv(
 
         output_path,
 
@@ -21,6 +17,6 @@ def export_to_excel(content):
 
     print(
 
-        f"Excel file created: {output_path}"
+        f"CSV created: {output_path}"
 
     )

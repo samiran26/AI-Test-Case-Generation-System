@@ -24,30 +24,36 @@ def generate_test_cases(context):
     prompt = f"""
 You are a Senior QA Engineer.
 
-Generate software test cases from these requirements.
+Generate test cases from these requirements.
 
 Requirements:
 
 {context}
 
-For every requirement generate:
+Return ONLY a JSON array.
 
-- Test Case ID
-- Description
-- Preconditions
-- Test Steps
-- Expected Result
-- Priority
+Format:
 
-Include:
+[
+  {{
+    "TC_ID":"TC001",
+    "Description":"Valid login",
+    "Preconditions":"User account exists",
+    "Test_Steps":"Enter email, Enter password, Click Login",
+    "Expected_Result":"User is redirected to dashboard",
+    "Priority":"High"
+  }}
+]
 
-- Positive test cases
+Rules:
 
-- Negative test cases
+1. Return ONLY JSON.
 
-- Edge cases
+2. No explanations.
 
-Format the response clearly.
+3. No markdown.
+
+4. Include positive, negative and edge cases.
 """
 
     response = client.models.generate_content(
@@ -55,7 +61,9 @@ Format the response clearly.
         contents=prompt
     )
 
-    return response.text
+    import json
+
+    return json.loads(response.text)
 
 
 if __name__ == "__main__":
